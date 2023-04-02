@@ -1,0 +1,14 @@
+, include: [{ model: Employee }]
+
+
+  <% if( i == index+1){%>
+                                    <td><%= e.employee.name   %></td>
+                                    <td><%= e.date   %></td>
+                                    <td><%= e.year   %></td>
+                                    <td><%=    %></td>
+                                    <% } else{%>
+                                        <td> null</td>
+                                        <td>null</td>
+                                    <td> null</td>
+                                    <td>null </td>
+                                        <%}%>

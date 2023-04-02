@@ -1,0 +1,78 @@
+<%- include('./partials/sidebar')%>
+  <main id="main" class="content-wrapper">
+    <h4 class="p-1">CReate salariee</h4>
+    <div class="container-fluid pt-3">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <form action="/create_Salariee" method="POST">
+                <div class="form-group">
+                  <select name="employes" class="form-control w-25 select2" id="cars">
+                    <option value="" selected hidden disable> employes ></option>
+                    <% employes.forEach(function(e,i){ %>
+                      <option value="<%= e.id%>">
+                        <%= e.name%>
+                      </option>
+                      <% })%>
+                  </select>
+                  <div class="form-group">
+                    <label for="month">month:</label>
+                    <input class="form-control"
+                    id="month"
+                    type="number"
+                    placeholder="Enter your month"
+                    name="month"
+                    min="1"
+                    max="12"
+                    required />
+                  </div>
+                  <div class="form-group">
+                    <label for="year">year:</label>
+                    <input class="form-control"
+                    id="year"
+                    type="number"
+                    placeholder="Enter your year"
+                    name="year"
+                    min="1900"
+                    max="2099"
+                    required />
+                  </div>
+                  <div class="form-group">
+                    <label for="total_working_days">total_working_days:</label>
+                    <input class="form-control"
+                    type="number"
+                    placeholder="Enter your total_working_days"
+                    name="total_working_days"
+                    id="total_working_days"
+                    min="0"
+                    required />
+                  </div>
+                  <div class="form-group">
+                    <label for="overtime">overtime:</label>
+                    <input class="form-control"
+                    type="number"
+                    name="overtime"
+                    id="overtime"
+                    min="0"
+                    required />
+                  </div>
+                  <div class="form-group">
+                    <label for="total_leave_taken">total_leave_taken:</label>
+                    <input class="form-control"
+                    id="total_leave_taken"
+                    placeholder="Enter your total_leave_taken"
+                    name="total_leave_taken"
+                    type="number"
+                    id="total_leave_taken"
+                    min="0"
+                    required />
+                  </div>
+                  <button class="btn btn-primary btn-block">create salariee</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>

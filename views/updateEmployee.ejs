@@ -1,0 +1,83 @@
+<%- include('./partials/sidebar')%>
+<main id="main" class="content-wrapper">
+  <h4 class="p-1">update Employee</h4>
+  <div class="container-fluid pt-3">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <form action="/updateEmployee/<%= id%>" method="POST">
+              <div class="form-group">
+                <label for="name">Name:</label>
+                <input
+                value="<%= employe.name%>"
+                  class="form-control"
+                  id="name"
+                  placeholder="Enter Name"
+                  name="name"
+                  type="text"
+                />
+              </div>
+              <div class="form-group">
+                <label for="email">Email:</label>
+                <input
+                value="<%= employe.email%>"
+                  class="form-control"
+                  id="email"
+                  placeholder="Enter email"
+                  name="email"
+                  type="email"
+                />
+              </div>
+              <div class="form-group">
+                <label for="password">password:</label>
+                <input
+                  class="form-control"
+                  id="password"
+                  value="<%= employe.password%>"
+                  placeholder="Enter password"
+                  name="password"
+                  type="text"
+                />
+              </div>
+              <div class="form-group">
+                <label for="mobile">Mobile:</label>
+                <input
+                value="<%= employe.mobile %>"
+                  class="form-control"
+                  id="mobile"
+                  placeholder="Enter your  number"
+                  name="mobile"
+                  type="text"
+                />
+              </div>
+              <div class="form-group">
+                <label for="address">Address:</label>
+                <input
+                value="<%= employe.address%>"
+                  class="form-control"
+                  id="address"
+                  placeholder="Enter your address"
+                  name="address"
+                  type="text"
+                />
+              </div>
+              <div class="form-group">
+                <label for="base_salary">base_salary:</label>
+                <input
+                value="<%= employe.base_salary%>"
+                  class="form-control"
+                  id="base_salary"
+                  placeholder="Enter your base_salary"
+                  name="base_salary"
+                  type="text"
+                />
+              </div>
+              <button class="btn btn-primary btn-block">update Employee</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

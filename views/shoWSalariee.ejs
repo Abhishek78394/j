@@ -1,0 +1,74 @@
+<%- include('./partials/sidebar')%>
+
+<main id="main" class="content-wrapper">
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>DataTables</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">DataTables</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                users DataTable
+              </h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>name</th>
+                    <th>month</th>
+                    <th>year</th>
+                    <th>working_day</th>
+                    <th>leave_taken</th>
+                    <th>base salary</th>
+                    <th>overtime</th>
+                    <th>total_salary</th>
+                    <th>delete</th>
+                    <th>update</th>
+                  </tr>
+                </thead>
+                <% salaries.forEach(function(e,i){ %>  
+                 <%= e.total_salary_made %>
+                <tbody>
+                  <tr>
+                      <td><%= e.employee.name %></td>
+                    <td><%= e.month %></td>
+                    <td><%=  e.year %></td>
+                    <td><%=  e.total_working_days%></td>
+                    <td><%=  e.total_leave_taken %></td>
+                    <td><%= e.employee.base_salary %></td>
+                    <td><%=  e.overtime %></td>
+                    <td><%=  e.total_salary_made %></td>
+                    <% if(e){%>
+                    <td><a href="/deleteSalariee/<%= e.id%>" class="nav-link"><button key={<%= e.id%>} class="btn "><i class="fa fa-trash"></i></button> </a>  </td>
+                    <%}%>
+                    <% if(e){%>
+                        <td> <a href="/updateSalariee/<%=e.id%>"  class="nav-link"> <button onclick={clickHandler} key={<%= e.id%>} class="btn btn-"> update</button  > </a></td>
+                        <%}%>
+                        <%})%>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

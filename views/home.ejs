@@ -1,0 +1,85 @@
+<%- include('./partials/sidebar')%>
+
+  <main id="main" class="content-wrapper">
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>DataTables</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">DataTables</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <h5> totol no. of employe <%= attendance.length %>
+                  </h5>
+                </h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>s.no</th>
+                      <th>Name</th>
+                      <th>this Month presebnt</th>
+                      <th></th>
+                      <th>last month present</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% attendance.forEach(function(e,i){ %>
+                      <tr>
+                        <td>
+                          <%= i+1 %>
+                        </td>
+                        <td>
+                          <%= e.employee.name %>
+                        </td>
+
+                        <td class="d-flex justify-content-between">
+                          <% present.forEach((ee , ii)=>{%>
+                            <% if(i==ii) {%> <span><a href="/detail/<%= e.employee.id%>"> view </a></span> <span>
+                                <%= ee.toFixed(2) %> %
+                              </span>
+                              <% }%>
+                                <% })%>
+                        </td>
+
+<td></td>
+                 
+                        <td class="d-flex justify-content-between">
+                          <% temp.forEach((eee , iii)=>{%>
+                            <% if(i==iii) {%> <span><a href="/lastmonthDetail/<%= e.employee.id%>"> view </a></span>
+                              <span>
+                                <%= eee.toFixed(2) %> %
+                              </span>
+                              <% }%>
+                                <%})%>
+                        </td>
+
+                      </tr>
+                      <% })%>
+                  </tbody>
+              </div>
+              <!-- /.card-body -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>

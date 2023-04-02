@@ -1,0 +1,44 @@
+<%- include('./partials/usersidebar')%>
+<main id="main" class="content-wrapper">
+  <h4 class="d-flex justify-content-evenly"><p class="p-1">subbmit your attandence </p>
+    <p><a href="/leave/<%=  id%>">apply for leave</a></p></h4>
+  <div class="container-fluid pt-3">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <form action="/attendance/<%= id%>" method="POST">
+              
+              <div class="form-group">
+                <label for="date">date:</label>
+                <input
+                  class="form-control"
+                  id="date"
+                  placeholder="Enter your date"
+                  name="date"
+                  min="1"
+                  max="31"
+                  type="date"
+                />
+              </div>
+             
+              <div class="form-group">
+                <label for="total_working_hours">total_working_hours:</label>
+                <input
+                  class="form-control"
+                  id="total_working_hours"
+                  placeholder="Enter your base_salary"
+                  name="total_working_hours"
+                  type="number"
+                  min="1"
+                  max="12"
+                />
+              </div>
+              <button class="btn btn-primary btn-block">create Employee</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
