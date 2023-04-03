@@ -26,12 +26,12 @@ const employAttendance = async (req, res) => {
     id = req.params.id
     res.render("attendance", { id })
 }
+
 const leaveget = async (req, res) => {
     id = req.params.id;
-
-
     res.render("leave", { id })
 }
+
 const leaveApply = async (req, res) => {
     id = req.params.id
     console.log(req.body)
@@ -42,21 +42,18 @@ const leaveApply = async (req, res) => {
     });
     res.redirect(`/attendance/${id}`)
 }
-const EmployAttendancePost = async (req, res) => {
-    id = req.params.id
-    console.log(id)
-    console.log(req.body, "hg")
 
+const EmployAttendancePost = async (req, res) => {
+    id = req.params.id;
     await Attendance.create({
         employ_id: id,
         date: req.body.date,
         total_working_hours: req.body.total_working_hours,
     });
-    console.log("object")
     res.redirect(`/attendance/${id}`)
 }
-const thisMonth = (req, res) => {
 
+const thisMonth = (req, res) => {
     try {
         const today = new Date();
         const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
@@ -73,6 +70,7 @@ const thisMonth = (req, res) => {
         console.log(error)
     }
 }
+
 const lastmonth = (req, res) => {
     try {
         const today = new Date();
@@ -105,15 +103,5 @@ const lastmonth = (req, res) => {
 
 
 
-const myfun  = ()=>{
-    const currentMonth = moment().format('YYYY-MM');
-    const datesArray = [];
-    for (let date = 1; date <= moment(currentMonth).daysInMonth(); date++) {
-      datesArray.push(moment(`${currentMonth}-${date}`, 'YYYY-MM-DD'));
-    }
-    const remainingDays = moment(currentMonth).daysInMonth() - sundaysArray.length;
-    console.log(`Remaining days of the month: ${remainingDays}`);   
-}
-
-module.exports = { employLogin, lastmonth, myfun,  employAttendance, EmployAttendancePost, leaveApply, leaveget, thisMonth }
+module.exports = { employLogin, lastmonth,   employAttendance, EmployAttendancePost, leaveApply, leaveget, thisMonth }
 

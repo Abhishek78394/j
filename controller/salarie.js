@@ -27,12 +27,10 @@ salary.forEach(e => {
   if(e.month==month){
     return res.status(501).json({ message: "Salary already processed for this selected month" });
   }
- }
-}
+ }}
 });
     const task = await salaries.create({ employee_id, month,year ,total_working_days ,total_leave_taken,   overtime});
     res.status(200).redirect("shoWSalariee")
-  
   } catch (error) {
     console.log(error)
   }
@@ -43,11 +41,9 @@ const get_task = async (req, res) => {
     const data = await salaries.findAll({
       include: [{ model: employes }]
     }).then(async (e) => {
-  
-      const salarie = e.map((data) => {
+   const salarie = e.map((data) => {
         return data
       })
-
       const page = parseInt(req.query.page) || 1;
       const pageSize = 2;
       const totalRecords = salarie.length; 

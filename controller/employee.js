@@ -25,15 +25,12 @@ const get_Employee = async (req, res) => {
   try {
     let employess = await Employess.findAll({});
     const page = parseInt(req.query.page) || 1;
-    console.log(page)
     const pageSize = 2;
     const totalRecords = employess.length; 
     const totalPages = Math.ceil(totalRecords / pageSize);
     const startIndex = (page - 1) * pageSize;
     const endIndex = Math.min(startIndex + pageSize, totalRecords);
-    console.log(startIndex, endIndex,totalPages)
     const employeesSubset = employess.slice(startIndex, endIndex);
-    console.log(employeesSubset)
     res.status(200).render('showEmployee', { 
       employee: employeesSubset,
       currentPage: page,
@@ -70,7 +67,6 @@ const updateEmployee_get = async (req, res) => {
 
 const update_employee = async (req, res) => {
   const id = req.params.id;
-  console.log(id ,"dsafghjk")
   try {
     const employe = await Employess.findByPk(id);
     if (!employe) {

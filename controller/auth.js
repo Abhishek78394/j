@@ -8,6 +8,8 @@ const moment = require('moment')
 const Attendance = db.attendance
 const { Op } = require('sequelize');
 
+
+
 const register = async (req, res) => {
     try {
         let user = await User.findOne({ where: { email: req.body.email } });
@@ -101,8 +103,7 @@ const deshboard = async (req, res) => {
                 include: [{ model: Employee }]
             }).then((e) => {
                 return e.length
-            })
-           
+            }) 
             const attt = attendance / remainingDays * 100
             temp.push(attt)
         })
@@ -129,7 +130,6 @@ const deshboard = async (req, res) => {
             const at = dance / remainingDays * 100
             temp2.push(at)
         })
-
         let salary = await Salary.findAll({});
         setTimeout(()=>{
             console.log(temp, "present")
@@ -140,13 +140,6 @@ const deshboard = async (req, res) => {
         console.log(error);
         res.status(500).send('Internal server error');
     }
-
 }
-
-
-
-
-
-
 
 module.exports = { register, login, logout, deshboard };
