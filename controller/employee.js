@@ -24,7 +24,22 @@ const create_Employe = async (req, res) => {
 const get_Employee = async (req, res) => {
   try {
     let employess = await Employess.findAll({});
-    res.status(200).render('showEmployee', { employess })
+    const page = parseInt(req.query.page) || 1;
+    console.log(page)
+    const pageSize = 1;
+    const totalRecords = employess.length; 
+    const totalPages = Math.ceil(totalRecords / pageSize);
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = Math.min(startIndex + pageSize, totalRecords);
+    console.log(startIndex, endIndex,totalPages)
+    const employeesSubset = employess.slice(startIndex, endIndex);
+    console.log(employeesSubset)
+    res.status(200).render('showEmployee', { 
+      employee: employeesSubset,
+      currentPage: page,
+      totalPages: totalPages,
+      startIndex: startIndex,
+      endIndex: endIndex })
   } catch (error) {
     console.log(error)
   }

@@ -42,24 +42,42 @@
                     <th>update</th>
                   </tr>
                 </thead>
-                <% employess.forEach(function(e,i){ %>     
                 <tbody>
-                  <tr>
-                      <td><%= i+1 %></td>
-                    <td><%= e.name %></td>
-                    <td><%=  e.email%></td>
-                    <td><%=  e.mobile%></td>
-                    <td><%=  e.address%></td>
-                    <td><%=  e.base_salary%></td>
-                    <% if(e){%>
-                    <td><a href="/deleteemployee/<%= e.id%>" class="nav-link"><button key={<%= e.id%>} class="btn "><i class="fa fa-trash"></i></button> </a>  </td>
-                    <%}%>
-                    <% if(e){%>
-                        <td> <a href="/updateEmployee/<%=e.id%>"  class="nav-link"> <button onclick={clickHandler} key={<%= e.id%>} class="btn btn-"> update</button> </a></td>
-                        <%}%>
-                        <%})%>
-                  </tr>
+                  <% employee.forEach(function(e,i){ %>
+                
+                      <tr>
+                        <td><%= i+1 %></td>
+                        <td><%= e.name %></td>
+                        <td><%= e.email %></td>
+                        <td><%= e.mobile %></td>
+                        <td><%= e.address %></td>
+                        <td><%= e.base_salary %></td>
+                        <% if(e){ %>
+                          <td><a href="/deleteemployee/<%= e.id %>" class="nav-link"><button key="<%= e.id %>" class="btn "><i class="fa fa-trash"></i></button> </a>  </td>
+                        <% } %>
+                        <% if(e){ %>
+                          <td> <a href="/updateEmployee/<%= e.id %>"  class="nav-link"> <button onclick={clickHandler} key="<%= e.id %>" class="btn btn-"> update</button> </a></td>
+                        <% } %>
+                      </tr>
+                  
+                  <% }) %>
+                </tbody>
               </table>
+              <ul  class=" mt-3 w-100 d-flex justify-content-around">
+                <% if (currentPage > 1) { %>
+                    <li><a href="/showEmployee?page=<%= currentPage - 1 %>">Previous</a></li>
+                <% } %>
+                <% for (let i = 1; i <= totalPages; i++) { %>
+                    <% if (i === currentPage) { %>
+                        <li><%= i %></li>
+                    <% } else { %>
+                        <li><a href="/showEmployee?page=<%= i %>"><%= i %></a></li>
+                    <% } %>
+                <% } %>
+                <% if (currentPage < totalPages) { %>
+                    <li><a href="/showEmployee?page=<%= currentPage + 1 %>">Next</a></li>
+                <% } %>
+                </ul>
             </div>
             <!-- /.card-body -->
           </div>

@@ -52,6 +52,7 @@ const EmployAttendancePost = async (req, res) => {
         date: req.body.date,
         total_working_hours: req.body.total_working_hours,
     });
+    console.log("object")
     res.redirect(`/attendance/${id}`)
 }
 const thisMonth = (req, res) => {

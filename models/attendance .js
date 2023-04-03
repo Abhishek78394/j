@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       total_working_hours : {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
     });

@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const User = db.admin;
 const Employee = db.employes
 const Salary = db.salaries
+const moment = require('moment')
 const Attendance = db.attendance
 const { Op } = require('sequelize');
 
@@ -78,6 +79,14 @@ const deshboard = async (req, res) => {
     try {
         var temp = []
         var temp2 = []
+        const currentMonth = moment().format('YYYY-MM');
+        const datesArray = [];
+        for (let date = 1; date <= moment(currentMonth).daysInMonth(); date++) {
+          datesArray.push(moment(`${currentMonth}-${date}`, 'YYYY-MM-DD'));
+        }
+        const sundaysArray = datesArray.filter(date => date.day() == 0);
+        const remainingDays = moment(currentMonth).daysInMonth() - sundaysArray.length;
+        console.log(`Remaining days of the month: ${remainingDays}`); 
         const data = await Attendance.findAll({ group: ['employ_id'], include: [{ model: Employee }] })
         await data.forEach(async (datas) => {
             const today = new Date();
@@ -93,8 +102,8 @@ const deshboard = async (req, res) => {
             }).then((e) => {
                 return e.length
             })
-            const attt = attendance / 31 * 100
-
+           
+            const attt = attendance / remainingDays * 100
             temp.push(attt)
         })
         await data.forEach(async (datas) => {
@@ -117,12 +126,11 @@ const deshboard = async (req, res) => {
             }).then((e) => {
                 return e.length
             })
-            const at = dance / 31 * 100
+            const at = dance / remainingDays * 100
             temp2.push(at)
         })
 
         let salary = await Salary.findAll({});
-
         setTimeout(()=>{
             console.log(temp, "present")
             res.render('home', { attendance: data,present:temp, temp : temp2 })

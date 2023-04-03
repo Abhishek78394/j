@@ -12,3 +12,30 @@
                                     <td> null</td>
                                     <td>null </td>
                                         <%}%>
+
+
+
+
+
+
+
+
+
+                                        <% employess.forEach(function(e,i){ %>     
+                <tbody>
+                  <tr>
+                      <td><%= i+1 %></td>
+                    <td><%= e.name %></td>
+                    <td><%=  e.email%></td>
+                    <td><%=  e.mobile%></td>
+                    <td><%=  e.address%></td>
+                    <td><%=  e.base_salary%></td>
+                    <% if(e){%>
+                    <td><a href="/deleteemployee/<%= e.id%>" class="nav-link"><button key={<%= e.id%>} class="btn "><i class="fa fa-trash"></i></button> </a>  </td>
+                    <%}%>
+                    <% if(e){%>
+                        <td> <a href="/updateEmployee/<%=e.id%>"  class="nav-link"> <button onclick={clickHandler} key={<%= e.id%>} class="btn btn-"> update</button> </a></td>
+                        <%}%>
+                        <%})%>
+                  </tr>
+              </table>
