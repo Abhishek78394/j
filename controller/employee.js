@@ -26,7 +26,7 @@ const get_Employee = async (req, res) => {
     let employess = await Employess.findAll({});
     const page = parseInt(req.query.page) || 1;
     console.log(page)
-    const pageSize = 1;
+    const pageSize = 2;
     const totalRecords = employess.length; 
     const totalPages = Math.ceil(totalRecords / pageSize);
     const startIndex = (page - 1) * pageSize;

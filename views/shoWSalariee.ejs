@@ -1,5 +1,4 @@
 <%- include('./partials/sidebar')%>
-
 <main id="main" class="content-wrapper">
   <section class="content-header">
     <div class="container-fluid">
@@ -15,7 +14,6 @@
         </div>
       </div>
     </div>
-    <!-- /.container-fluid -->
   </section>
   <section class="content">
     <div class="container-fluid">
@@ -27,14 +25,13 @@
                 users DataTable
               </h3>
             </div>
-            <!-- /.card-header -->
             <div class="card-body">
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                   <tr>
+                    <th>s.no</th>
                     <th>name</th>
-                    <th>month</th>
-                    <th>year</th>
+                    <th>date</th>
                     <th>working_day</th>
                     <th>leave_taken</th>
                     <th>base salary</th>
@@ -45,12 +42,11 @@
                   </tr>
                 </thead>
                 <% salaries.forEach(function(e,i){ %>  
-                 <%= e.total_salary_made %>
                 <tbody>
                   <tr>
+                    <td><%= i+1%></td>
                       <td><%= e.employee.name %></td>
-                    <td><%= e.month %></td>
-                    <td><%=  e.year %></td>
+                    <td><%=  e.date.toString().split(" ")[1]  %> <%= e.date.toString().split(" ")[2]  %> <%= e.date.toString().split(" ")[3]   %></td>
                     <td><%=  e.total_working_days%></td>
                     <td><%=  e.total_leave_taken %></td>
                     <td><%= e.employee.base_salary %></td>
@@ -64,8 +60,23 @@
                         <%}%>
                         <%})%>
               </table>
+
+              <ul  class=" mt-3 w-100 d-flex justify-content-around">
+                <% if (currentPage > 1) { %>
+                    <li><a href="/showSalariee?page=<%= currentPage - 1 %>">Previous</a></li>
+                <% } %>
+                <% for (let i = 1; i <= totalPages; i++) { %>
+                    <% if (i === currentPage) { %>
+                        <li><%= i %></li>
+                    <% } else { %>
+                        <li><a href="/showSalariee?page=<%= i %>"><%= i %></a></li>
+                    <% } %>
+                <% } %>
+                <% if (currentPage < totalPages) { %>
+                    <li><a href="/showSalariee?page=<%= currentPage + 1 %>">Next</a></li>
+                <% } %>
+                </ul>
             </div>
-            <!-- /.card-body -->
           </div>
         </div>
       </div>

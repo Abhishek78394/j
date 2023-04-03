@@ -47,7 +47,21 @@ const get_task = async (req, res) => {
       const salarie = e.map((data) => {
         return data
       })
-      res.status(200).render("showSalariee", { salaries: salarie })
+
+      const page = parseInt(req.query.page) || 1;
+      const pageSize = 2;
+      const totalRecords = salarie.length; 
+      const totalPages = Math.ceil(totalRecords / pageSize);
+      const startIndex = (page - 1) * pageSize;
+      const endIndex = Math.min(startIndex + pageSize, totalRecords);
+      console.log(startIndex, endIndex,totalPages)
+      const salarieSubset = salarie.slice(startIndex, endIndex);
+      console.log(salarieSubset)
+      res.status(200).render("showSalariee", { salaries: salarieSubset,
+        currentPage: page,
+        totalPages: totalPages,
+        startIndex: startIndex,
+        endIndex: endIndex })
     })
   } catch (error) {
     console.log(error)
